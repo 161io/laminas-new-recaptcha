@@ -1,16 +1,16 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2016, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptcha\Validator;
 
-use Zend\Http\PhpEnvironment\RemoteAddress;
-use Zend\Stdlib\ErrorHandler;
-use Zend\Validator\AbstractValidator;
-use Zend\Validator\Exception;
+use Laminas\Http\PhpEnvironment\RemoteAddress;
+use Laminas\Stdlib\ErrorHandler;
+use Laminas\Validator\AbstractValidator;
+use Laminas\Validator\Exception;
 
 class NewReCaptcha extends AbstractValidator
 {
@@ -71,7 +71,7 @@ class NewReCaptcha extends AbstractValidator
     }
 
     /**
-     * @return \Zend\Http\Request
+     * @return \Laminas\Http\Request
      */
     public function getRequest()
     {

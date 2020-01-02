@@ -1,15 +1,15 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2016, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptchaTest\Validator;
 
+use Laminas\Stdlib\Parameters;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use NewReCaptcha\Validator\NewReCaptcha;
-use Zend\Stdlib\Parameters;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class NewReCaptchaTest extends AbstractHttpControllerTestCase
 {
@@ -21,38 +21,38 @@ class NewReCaptchaTest extends AbstractHttpControllerTestCase
 
     public function testIsValid1()
     {
-        $sl = $this->getApplicationServiceLocator();
+        $container = $this->getApplicationServiceLocator();
 
-        /* @var \NewReCaptcha\Form\Element\NewReCaptcha $element */
-        $element = $sl->get('FormElementManager')->get('NewReCaptcha');
+        /** @var \NewReCaptcha\Form\Element\NewReCaptcha $element */
+        $element = $container->get('FormElementManager')->get('NewReCaptcha');
 
-        /* @var \NewReCaptcha\Validator\NewReCaptcha $validator */
+        /** @var \NewReCaptcha\Validator\NewReCaptcha $validator */
         $validator = $element->getValidator();
 
         $this->assertInstanceOf('NewReCaptcha\Validator\NewReCaptcha', $validator);
-        $this->assertInternalType('string', $validator->getIpAddress());
+        $this->assertIsString($validator->getIpAddress());
         $this->assertFalse($validator->isValid(null));
         $this->assertArrayHasKey(NewReCaptcha::MISSING_VALUE, $validator->getOption('messages'));
     }
 
     public function testIsValid2()
     {
-        $sl = $this->getApplicationServiceLocator();
-        /* @var \Zend\Http\Request $request */
-        $request = $sl->get('Request');
+        $container = $this->getApplicationServiceLocator();
+        /** @var \Laminas\Http\Request $request */
+        $request = $container->get('Request');
         $request->setMethod($request::METHOD_POST);
         $request->setPost(new Parameters([
             NewReCaptcha::NAME => time(),
         ]));
 
-        /* @var \NewReCaptcha\Form\Element\NewReCaptcha $element */
-        $element = $sl->get('FormElementManager')->get('NewReCaptcha');
+        /** @var \NewReCaptcha\Form\Element\NewReCaptcha $element */
+        $element = $container->get('FormElementManager')->get('NewReCaptcha');
 
-        /* @var \NewReCaptcha\Validator\NewReCaptcha $validator */
+        /** @var \NewReCaptcha\Validator\NewReCaptcha $validator */
         $validator = $element->getValidator();
 
         $this->assertInstanceOf('NewReCaptcha\Validator\NewReCaptcha', $validator);
-        $this->assertInternalType('string', $validator->getIpAddress());
+        $this->assertIsString($validator->getIpAddress());
         $this->assertFalse($validator->isValid(null));
         $this->assertArrayHasKey(NewReCaptcha::BAD_CAPTCHA, $validator->getOption('messages'));
     }

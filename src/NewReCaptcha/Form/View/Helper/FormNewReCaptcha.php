@@ -1,19 +1,19 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2016, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptcha\Form\View\Helper;
 
+use Laminas\Form\ElementInterface;
+use Laminas\View\Helper\AbstractHelper;
 use NewReCaptcha\Form\Element\NewReCaptcha;
-use Zend\Form\ElementInterface;
-use Zend\View\Helper\AbstractHelper;
 
 /**
- * Helper: $this->formNewReCaptcha();
- * @see \Zend\Form\View\Helper\FormHidden
+ * Helper: $this->formNewReCaptcha()
+ * @see \Laminas\Form\View\Helper\FormHidden
  */
 class FormNewReCaptcha extends AbstractHelper
 {
@@ -60,7 +60,7 @@ class FormNewReCaptcha extends AbstractHelper
      */
     public function render(NewReCaptcha $newReCaptcha)
     {
-        /* @var \Zend\Form\View\Helper\FormHidden $url */
+        /** @var \Laminas\Form\View\Helper\FormHidden $url */
         $formHidden = $this->view->plugin('formHidden');
         $html  = $formHidden($newReCaptcha);
         $html .= '<div class="g-recaptcha"';

@@ -1,13 +1,13 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2016, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptcha;
 
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 
 class Module implements ConfigProviderInterface
 {

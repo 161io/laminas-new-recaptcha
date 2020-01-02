@@ -1,14 +1,16 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2016, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptchaTest\Form\Element\Service;
 
+use Laminas\Http\Request;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use NewReCaptcha\Form\Element\NewReCaptcha;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use NewReCaptcha\Validator\NewReCaptcha as NewReCaptchaValidator;
 
 class NewReCaptchaFactoryTest extends AbstractHttpControllerTestCase
 {
@@ -20,23 +22,23 @@ class NewReCaptchaFactoryTest extends AbstractHttpControllerTestCase
 
     public function testCreateService()
     {
-        $sl = $this->getApplicationServiceLocator();
+        $container = $this->getApplicationServiceLocator();
 
-        /* @var NewReCaptcha $element */
-        $element = $sl->get('FormElementManager')->get(NewReCaptcha::class);
-        $this->assertInstanceOf('NewReCaptcha\Form\Element\NewReCaptcha', $element);
-        $this->assertInstanceOf('NewReCaptcha\Validator\NewReCaptcha', $element->getValidator());
-        $this->assertInstanceOf('Zend\Http\Request', $element->getRequest());
+        /** @var NewReCaptcha $element */
+        $element = $container->get('FormElementManager')->get(NewReCaptcha::class);
+        $this->assertInstanceOf(NewReCaptcha::class, $element);
+        $this->assertInstanceOf(NewReCaptchaValidator::class, $element->getValidator());
+        $this->assertInstanceOf(Request::class, $element->getRequest());
     }
 
     public function testCreateServiceByAlias()
     {
-        $sl = $this->getApplicationServiceLocator();
+        $container = $this->getApplicationServiceLocator();
 
-        /* @var NewReCaptcha $element */
-        $element = $sl->get('FormElementManager')->get('NewReCaptcha');
-        $this->assertInstanceOf('NewReCaptcha\Form\Element\NewReCaptcha', $element);
-        $this->assertInstanceOf('NewReCaptcha\Validator\NewReCaptcha', $element->getValidator());
-        $this->assertInstanceOf('Zend\Http\Request', $element->getRequest());
+        /** @var NewReCaptcha $element */
+        $element = $container->get('FormElementManager')->get('NewReCaptcha');
+        $this->assertInstanceOf(NewReCaptcha::class, $element);
+        $this->assertInstanceOf(NewReCaptchaValidator::class, $element->getValidator());
+        $this->assertInstanceOf(Request::class, $element->getRequest());
     }
 }

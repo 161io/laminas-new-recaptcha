@@ -1,14 +1,14 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2018, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptcha\Form\View;
 
+use Laminas\Form\ElementInterface;
 use NewReCaptcha\Form\View\Helper\FormNewReCaptcha;
-use Zend\Form\ElementInterface;
 
 /**
  * Helper trait for auto-completion of code in modern IDEs.

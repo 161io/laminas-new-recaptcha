@@ -1,19 +1,19 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2016, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptcha\Form\Element;
 
+use Laminas\Form\ElementPrepareAwareInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\Element;
+use Laminas\Form\FormInterface;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\ValidatorInterface;
 use NewReCaptcha\Validator\NewReCaptcha as NewReCaptchaValidator;
-use Zend\Form\ElementPrepareAwareInterface;
-use Zend\Form\Exception;
-use Zend\Form\Element;
-use Zend\Form\FormInterface;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\Validator\ValidatorInterface;
 
 class NewReCaptcha extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
@@ -48,7 +48,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     protected $remoteIp = true;
 
     /**
-     * @var \Zend\Http\Request
+     * @var \Laminas\Http\Request
      */
     protected $request;
 
@@ -177,7 +177,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     }
 
     /**
-     * @return \Zend\Http\Request
+     * @return \Laminas\Http\Request
      */
     public function getRequest()
     {
@@ -185,7 +185,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     }
 
     /**
-     * @param  \Zend\Http\Request $request
+     * @param  \Laminas\Http\Request $request
      * @return self
      */
     public function setRequest($request)

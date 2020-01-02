@@ -1,13 +1,14 @@
 <?php
 /**
- * @link      https://github.com/basselin/zf2-new-recaptcha
- * @copyright (c) 2015-2016, Benoit Asselin contact(at)161.io
+ * @link      https://github.com/161io/laminas-new-recaptcha
+ * @copyright (c) 161 SARL - contact(at)161.io
  * @license   MIT License
  */
 
 namespace NewReCaptchaTest\Form\View\Helper;
 
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use NewReCaptcha\Form\View\Helper\FormNewReCaptcha;
 
 class FormNewReCaptchaTest extends AbstractHttpControllerTestCase
 {
@@ -19,28 +20,28 @@ class FormNewReCaptchaTest extends AbstractHttpControllerTestCase
 
     public function testCreateService()
     {
-        $sl = $this->getApplicationServiceLocator();
+        $container = $this->getApplicationServiceLocator();
 
-        /* @var \NewReCaptcha\Form\View\Helper\FormNewReCaptcha $helper */
-        $helper = $sl->get('ViewHelperManager')->get('FormNewReCaptcha');
-        $this->assertInstanceOf('NewReCaptcha\Form\View\Helper\FormNewReCaptcha', $helper);
+        /** @var FormNewReCaptcha $helper */
+        $helper = $container->get('ViewHelperManager')->get('FormNewReCaptcha');
+        $this->assertInstanceOf(FormNewReCaptcha::class, $helper);
     }
 
     public function testAppendApiJs()
     {
-        $sl = $this->getApplicationServiceLocator();
+        $container = $this->getApplicationServiceLocator();
 
-        /* @var \NewReCaptcha\Form\View\Helper\FormNewReCaptcha $helper */
-        $helper = $sl->get('ViewHelperManager')->get('FormNewReCaptcha');
+        /** @var FormNewReCaptcha $helper */
+        $helper = $container->get('ViewHelperManager')->get('FormNewReCaptcha');
         $helper->appendApiJs();
     }
 
     public function testGetSetTheme()
     {
-        $sl = $this->getApplicationServiceLocator();
+        $container = $this->getApplicationServiceLocator();
 
-        /* @var \NewReCaptcha\Form\View\Helper\FormNewReCaptcha $helper */
-        $helper = $sl->get('ViewHelperManager')->get('FormNewReCaptcha');
+        /** @var FormNewReCaptcha $helper */
+        $helper = $container->get('ViewHelperManager')->get('FormNewReCaptcha');
         $this->assertNull($helper->getTheme());
 
         $helper->setTheme('toto');
