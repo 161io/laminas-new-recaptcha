@@ -13,12 +13,12 @@
 * https://developers.google.com/recaptcha/docs/verify
 
 
-## Zend\Form\FormElementManager
+## Laminas\Form\FormElementManager
 
 `NewReCaptcha`: `NewReCaptcha\Form\Element\NewReCaptcha`
 
 
-## Zend\View\HelperPluginManager
+## Laminas\View\HelperPluginManager
 
 `formNewReCaptcha()`: `NewReCaptcha\Form\View\Helper\FormNewReCaptcha`
 
