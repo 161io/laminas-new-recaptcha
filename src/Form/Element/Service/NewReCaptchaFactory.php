@@ -7,19 +7,16 @@
 
 namespace NewReCaptcha\Form\Element\Service;
 
-use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerInterface;
 use NewReCaptcha\Form\Element\NewReCaptcha;
 
-class NewReCaptchaFactory implements FactoryInterface
+class NewReCaptchaFactory
 {
     /**
      * @param  ContainerInterface $container
-     * @param  string $requestedName
-     * @param  array $options
      * @return NewReCaptcha
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container)
     {
         $config = $container->get('Config');
 

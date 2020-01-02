@@ -12,10 +12,10 @@ use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 class Module implements ConfigProviderInterface
 {
     /**
-     * @return array
+     * @inheritDoc
      */
     public function getConfig()
     {
-        return include __DIR__ . '/../../config/module.config.php';
+        return include __DIR__ . '/../config/module.config.php';
     }
 }
