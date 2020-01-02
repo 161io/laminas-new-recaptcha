@@ -1,5 +1,5 @@
 {
-    "name": "161io/laminas-new-recaptcha",
+    "name": "161/laminas-new-recaptcha",
     "description": "Class using Google reCAPTCHA",
     "license": "MIT",
     "type": "library",
