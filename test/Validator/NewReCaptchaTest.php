@@ -7,8 +7,10 @@
 
 namespace NewReCaptchaTest\Validator;
 
+use Laminas\Http\Request;
 use Laminas\Stdlib\Parameters;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use NewReCaptcha\Form\Element\NewReCaptcha as NewReCaptchaElt;
 use NewReCaptcha\Validator\NewReCaptcha;
 
 class NewReCaptchaTest extends AbstractHttpControllerTestCase
@@ -23,13 +25,13 @@ class NewReCaptchaTest extends AbstractHttpControllerTestCase
     {
         $container = $this->getApplicationServiceLocator();
 
-        /** @var \NewReCaptcha\Form\Element\NewReCaptcha $element */
+        /** @var NewReCaptchaElt $element */
         $element = $container->get('FormElementManager')->get('NewReCaptcha');
 
-        /** @var \NewReCaptcha\Validator\NewReCaptcha $validator */
+        /** @var NewReCaptcha $validator */
         $validator = $element->getValidator();
 
-        $this->assertInstanceOf('NewReCaptcha\Validator\NewReCaptcha', $validator);
+        $this->assertInstanceOf(NewReCaptcha::class, $validator);
         $this->assertIsString($validator->getIpAddress());
         $this->assertFalse($validator->isValid(null));
         $this->assertArrayHasKey(NewReCaptcha::MISSING_VALUE, $validator->getOption('messages'));
@@ -38,20 +40,20 @@ class NewReCaptchaTest extends AbstractHttpControllerTestCase
     public function testIsValid2()
     {
         $container = $this->getApplicationServiceLocator();
-        /** @var \Laminas\Http\Request $request */
+        /** @var Request $request */
         $request = $container->get('Request');
         $request->setMethod($request::METHOD_POST);
         $request->setPost(new Parameters([
-            NewReCaptcha::NAME => time(),
+            NewReCaptcha::NAME => \time(),
         ]));
 
-        /** @var \NewReCaptcha\Form\Element\NewReCaptcha $element */
+        /** @var NewReCaptchaElt $element */
         $element = $container->get('FormElementManager')->get('NewReCaptcha');
 
-        /** @var \NewReCaptcha\Validator\NewReCaptcha $validator */
+        /** @var NewReCaptcha $validator */
         $validator = $element->getValidator();
 
-        $this->assertInstanceOf('NewReCaptcha\Validator\NewReCaptcha', $validator);
+        $this->assertInstanceOf(NewReCaptcha::class, $validator);
         $this->assertIsString($validator->getIpAddress());
         $this->assertFalse($validator->isValid(null));
         $this->assertArrayHasKey(NewReCaptcha::BAD_CAPTCHA, $validator->getOption('messages'));

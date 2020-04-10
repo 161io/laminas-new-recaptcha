@@ -8,6 +8,7 @@
 namespace NewReCaptcha\Validator;
 
 use Laminas\Http\PhpEnvironment\RemoteAddress;
+use Laminas\Http\Request;
 use Laminas\Stdlib\ErrorHandler;
 use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Exception;
@@ -71,7 +72,7 @@ class NewReCaptcha extends AbstractValidator
     }
 
     /**
-     * @return \Laminas\Http\Request
+     * @return Request
      */
     public function getRequest()
     {
@@ -112,28 +113,28 @@ class NewReCaptcha extends AbstractValidator
         $value = $request->getPost(static::NAME);
         $siteVerify  = static::URL_VERIFY;
         $siteVerify .= '?secret=' . $this->getSecretKey();
-        $siteVerify .= '&response=' . urlencode($value);
+        $siteVerify .= '&response=' . \urlencode($value);
         if ($this->withRemoteIp()) {
-            $siteVerify .= '&remoteip=' . urlencode($this->getIpAddress());
+            $siteVerify .= '&remoteip=' . \urlencode($this->getIpAddress());
         }
 
         ErrorHandler::start();
-        $content = file_get_contents($siteVerify);
+        $content = \file_get_contents($siteVerify);
         $excReturn = ErrorHandler::stop();
         if ($excReturn instanceof \Exception) {
             // Skip SSL
-            $streamContext = stream_context_create([
+            $streamContext = \stream_context_create([
                 'ssl' => ['verify_peer' => false],
             ]);
             ErrorHandler::start();
-            $content = file_get_contents($siteVerify, false, $streamContext);
+            $content = \file_get_contents($siteVerify, false, $streamContext);
             $excReturn = ErrorHandler::stop();
             if ($excReturn instanceof \Exception) {
                 throw $excReturn;
             }
         }
 
-        $result = json_decode($content, true);
+        $result = \json_decode($content, true);
         if (isset($result['success']) && $result['success']) {
             return true;
         }

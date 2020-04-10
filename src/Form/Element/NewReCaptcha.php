@@ -11,6 +11,7 @@ use Laminas\Form\ElementPrepareAwareInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\Element;
 use Laminas\Form\FormInterface;
+use Laminas\Http\Request;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\ValidatorInterface;
 use NewReCaptcha\Validator\NewReCaptcha as NewReCaptchaValidator;
@@ -48,7 +49,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     protected $remoteIp = true;
 
     /**
-     * @var \Laminas\Http\Request
+     * @var Request
      */
     protected $request;
 
@@ -177,7 +178,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     }
 
     /**
-     * @return \Laminas\Http\Request
+     * @return Request
      */
     public function getRequest()
     {
@@ -185,7 +186,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     }
 
     /**
-     * @param  \Laminas\Http\Request $request
+     * @param  Request $request
      * @return self
      */
     public function setRequest($request)

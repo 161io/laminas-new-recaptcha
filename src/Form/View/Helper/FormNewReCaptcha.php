@@ -9,11 +9,12 @@ namespace NewReCaptcha\Form\View\Helper;
 
 use Laminas\Form\ElementInterface;
 use Laminas\View\Helper\AbstractHelper;
+use Laminas\Form\View\Helper\FormHidden;
 use NewReCaptcha\Form\Element\NewReCaptcha;
 
 /**
  * Helper: $this->formNewReCaptcha()
- * @see \Laminas\Form\View\Helper\FormHidden
+ * @see FormHidden
  */
 class FormNewReCaptcha extends AbstractHelper
 {
@@ -60,7 +61,7 @@ class FormNewReCaptcha extends AbstractHelper
      */
     public function render(NewReCaptcha $newReCaptcha)
     {
-        /** @var \Laminas\Form\View\Helper\FormHidden $url */
+        /** @var FormHidden $url */
         $formHidden = $this->view->plugin('formHidden');
         $html  = $formHidden($newReCaptcha);
         $html .= '<div class="g-recaptcha"';
@@ -103,7 +104,7 @@ class FormNewReCaptcha extends AbstractHelper
      */
     public function setTheme($theme = null)
     {
-        if (!in_array($theme, ['light', 'dark'])) {
+        if (!\in_array($theme, ['light', 'dark'])) {
             $theme = null;
         }
         $this->theme = $theme;

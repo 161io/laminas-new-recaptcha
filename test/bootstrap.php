@@ -5,11 +5,11 @@
  * @license   MIT License
  */
 
-//$rootPath = realpath(__DIR__ . '/../../..');  // module/
-$rootPath = realpath(__DIR__ . '/../../../..'); // vendor/
-chdir($rootPath);
+//$rootPath = \realpath(__DIR__ . '/../../..');  // module/
+$rootPath = \realpath(__DIR__ . '/../../../..'); // vendor/
+\chdir($rootPath);
 
-if (is_file('vendor/autoload.php')) {
+if (\is_file('vendor/autoload.php')) {
     require_once 'vendor/autoload.php';
     return;
 }
