@@ -18,7 +18,7 @@ class NewReCaptchaFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $config = $container->get('Config');
+        $config = $container->get('config');
 
         $element = new NewReCaptcha();
         if (isset($config['new_recaptcha'])) {
