@@ -10,14 +10,14 @@
     /**
      * Transform INPUT type="hidden" on DIV reCAPTCHA
      */
-    function reCaptchaCallback() {
+    window.reCaptchaCallback = function() {
         if(!$('[data-sitekey]').length) { return; }
 
         var $head = $('head');
         if(!$head.data('recaptcha')) {
             $head
                 .data('recaptcha', true)
-                .append('<script src="https://www.google.com/recaptcha/api.js?onload=reCaptchaCallback&render=explicit"></script>');
+                .append('<script src="//www.google.com/recaptcha/api.js?onload=reCaptchaCallback&render=explicit"></script>');
             return;
         }
 
@@ -29,10 +29,10 @@
             var $div = $('<div class="g-recaptcha"></div>');
             $div.insertAfter($input);
             grecaptcha.render($div[0], {
-                'sitekey': $input.attr('data-sitekey')
+                'sitekey': $input.attr('data-sitekey'),
             });
         });
-    }
+    };
 
     $(function() {
         reCaptchaCallback();
