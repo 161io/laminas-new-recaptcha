@@ -5,6 +5,8 @@
  * @license   MIT License
  */
 
+declare(strict_types=1);
+
 //$rootPath = \realpath(__DIR__ . '/../../..');  // module/
 $rootPath = \realpath(__DIR__ . '/../../../..'); // vendor/
 \chdir($rootPath);

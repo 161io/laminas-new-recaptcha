@@ -7,9 +7,9 @@
 
 namespace NewReCaptcha\Validator;
 
+use Laminas\Http\Client;
 use Laminas\Http\PhpEnvironment\RemoteAddress;
 use Laminas\Http\Request;
-use Laminas\Stdlib\ErrorHandler;
 use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Exception;
 
@@ -118,23 +118,18 @@ class NewReCaptcha extends AbstractValidator
             $siteVerify .= '&remoteip=' . \urlencode($this->getIpAddress());
         }
 
-        ErrorHandler::start();
-        $content = \file_get_contents($siteVerify);
-        $excReturn = ErrorHandler::stop();
-        if ($excReturn instanceof \Exception) {
+        $cli = new Client($siteVerify);
+        try {
+            $response = $cli->send();
+        } catch (\Exception $exc) {
             // Skip SSL
-            $streamContext = \stream_context_create([
-                'ssl' => ['verify_peer' => false],
+            $cli = new Client($siteVerify, [
+                'sslverifypeer' => false,
             ]);
-            ErrorHandler::start();
-            $content = \file_get_contents($siteVerify, false, $streamContext);
-            $excReturn = ErrorHandler::stop();
-            if ($excReturn instanceof \Exception) {
-                throw $excReturn;
-            }
+            $response = $cli->send();
         }
 
-        $result = \json_decode($content, true);
+        $result = \json_decode($response->getBody(), true);
         if (isset($result['success']) && $result['success']) {
             return true;
         }

@@ -5,6 +5,8 @@
  * @license   MIT License
  */
 
+declare(strict_types=1);
+
 namespace NewReCaptchaTest\Form\Element\Service;
 
 use Laminas\Http\Request;
@@ -14,7 +16,7 @@ use NewReCaptcha\Validator\NewReCaptcha as NewReCaptchaValidator;
 
 class NewReCaptchaFactoryTest extends AbstractHttpControllerTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->setApplicationConfig(include 'config/application.config.php');
         parent::setUp();

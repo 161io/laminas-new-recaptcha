@@ -5,6 +5,8 @@
  * @license   MIT License
  */
 
+declare(strict_types=1);
+
 namespace NewReCaptchaTest\Form\View\Helper;
 
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
@@ -12,7 +14,7 @@ use NewReCaptcha\Form\View\Helper\FormNewReCaptcha;
 
 class FormNewReCaptchaTest extends AbstractHttpControllerTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->setApplicationConfig(include 'config/application.config.php');
         parent::setUp();
