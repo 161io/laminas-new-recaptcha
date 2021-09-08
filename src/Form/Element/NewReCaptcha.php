@@ -215,7 +215,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
      * @param  FormInterface $form
      * @return mixed
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         $this->setValue('1');
     }
