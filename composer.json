@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.0 || ^8.0",
+        "php": "^7.1 || ^8.0",
         "laminas/laminas-form": "^2.14 || ^3.0",
         "laminas/laminas-http": "^2.11",
         "laminas/laminas-inputfilter": "^2.10",
