@@ -40,7 +40,7 @@ class FormNewReCaptcha extends AbstractHelper
      * @param  string $theme 'light' or 'dark'
      * @return string|self
      */
-    public function __invoke(ElementInterface $element = null, $withApiJs = true, $theme = null)
+    public function __invoke(?ElementInterface $element = null, $withApiJs = true, $theme = null)
     {
         if ($withApiJs) {
             $this->appendApiJs();
