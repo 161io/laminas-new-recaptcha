@@ -32,14 +32,14 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
      *
      * @var string
      */
-    protected $siteKey;
+    protected $siteKey = '';
 
     /**
      * Private key
      *
      * @var string
      */
-    protected $secretKey;
+    protected $secretKey = '';
 
     /**
      * Check IP
@@ -51,12 +51,12 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     /**
      * @var Request
      */
-    protected $request;
+    protected $request = null;
 
     /**
      * @var ValidatorInterface
      */
-    protected $validator;
+    protected $validator = null;
 
     /**
      * reCAPTCHA options
@@ -65,7 +65,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
      * - remote_ip: Check IP
      *
      * @param  array|\Traversable $options
-     * @return self
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions($options)
@@ -102,7 +102,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
 
     /**
      * @param  ValidatorInterface $validator
-     * @return self
+     * @return $this
      */
     public function setValidator(ValidatorInterface $validator)
     {
@@ -124,7 +124,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
      * Public key
      *
      * @param  string $siteKey
-     * @return self
+     * @return $this
      */
     public function setSiteKey($siteKey)
     {
@@ -147,7 +147,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
      * Private key
      *
      * @param  string $secretKey
-     * @return self
+     * @return $this
      */
     public function setSecretKey($secretKey)
     {
@@ -169,7 +169,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
      * Check IP
      *
      * @param  bool $remoteIp
-     * @return self
+     * @return $this
      */
     public function setRemoteIp($remoteIp)
     {
@@ -187,7 +187,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
 
     /**
      * @param  Request $request
-     * @return self
+     * @return $this
      */
     public function setRequest($request)
     {
@@ -212,8 +212,7 @@ class NewReCaptcha extends Element implements InputProviderInterface, ElementPre
     }
 
     /**
-     * @param  FormInterface $form
-     * @return mixed
+     * @param FormInterface $form
      */
     public function prepareElement(FormInterface $form): void
     {

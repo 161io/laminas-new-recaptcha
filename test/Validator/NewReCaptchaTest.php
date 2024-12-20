@@ -15,6 +15,8 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use NewReCaptcha\Form\Element\NewReCaptcha as NewReCaptchaElt;
 use NewReCaptcha\Validator\NewReCaptcha;
 
+use function time;
+
 class NewReCaptchaTest extends AbstractHttpControllerTestCase
 {
     protected function setUp(): void
@@ -23,7 +25,7 @@ class NewReCaptchaTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
-    public function testIsValid1()
+    public function testIsValid1(): void
     {
         $container = $this->getApplicationServiceLocator();
 
@@ -39,14 +41,14 @@ class NewReCaptchaTest extends AbstractHttpControllerTestCase
         $this->assertArrayHasKey(NewReCaptcha::MISSING_VALUE, $validator->getOption('messages'));
     }
 
-    public function testIsValid2()
+    public function testIsValid2(): void
     {
         $container = $this->getApplicationServiceLocator();
         /** @var Request $request */
         $request = $container->get('Request');
         $request->setMethod($request::METHOD_POST);
         $request->setPost(new Parameters([
-            NewReCaptcha::NAME => \time(),
+            NewReCaptcha::NAME => time(),
         ]));
 
         /** @var NewReCaptchaElt $element */

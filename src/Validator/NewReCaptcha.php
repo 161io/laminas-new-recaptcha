@@ -13,6 +13,9 @@ use Laminas\Http\Request;
 use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Exception;
 
+use function json_decode;
+use function urlencode;
+
 class NewReCaptcha extends AbstractValidator
 {
     /**
@@ -49,7 +52,7 @@ class NewReCaptcha extends AbstractValidator
     /**
      * @var string
      */
-    protected $ipAddress;
+    protected $ipAddress = null;
 
     /**
      * Check IP
@@ -110,12 +113,12 @@ class NewReCaptcha extends AbstractValidator
             return false;
         }
 
-        $value = $request->getPost(static::NAME);
+        $value = (string) $request->getPost(static::NAME);
         $siteVerify  = static::URL_VERIFY;
         $siteVerify .= '?secret=' . $this->getSecretKey();
-        $siteVerify .= '&response=' . \urlencode($value);
+        $siteVerify .= '&response=' . urlencode($value);
         if ($this->withRemoteIp()) {
-            $siteVerify .= '&remoteip=' . \urlencode($this->getIpAddress());
+            $siteVerify .= '&remoteip=' . urlencode($this->getIpAddress());
         }
 
         $cli = new Client($siteVerify);
@@ -129,7 +132,7 @@ class NewReCaptcha extends AbstractValidator
             $response = $cli->send();
         }
 
-        $result = \json_decode($response->getBody(), true);
+        $result = json_decode($response->getBody(), true);
         if (isset($result['success']) && $result['success']) {
             return true;
         }

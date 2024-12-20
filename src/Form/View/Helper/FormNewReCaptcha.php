@@ -8,9 +8,11 @@
 namespace NewReCaptcha\Form\View\Helper;
 
 use Laminas\Form\ElementInterface;
-use Laminas\View\Helper\AbstractHelper;
 use Laminas\Form\View\Helper\FormHidden;
+use Laminas\View\Helper\AbstractHelper;
 use NewReCaptcha\Form\Element\NewReCaptcha;
+
+use function in_array;
 
 /**
  * Helper: $this->formNewReCaptcha()
@@ -28,7 +30,7 @@ class FormNewReCaptcha extends AbstractHelper
      *
      * @var string
      */
-    protected $theme;
+    protected $theme = null;
 
     /**
      * Invoke helper as functor
@@ -38,7 +40,7 @@ class FormNewReCaptcha extends AbstractHelper
      * @param  NewReCaptcha|ElementInterface $element
      * @param  bool $withApiJs
      * @param  string $theme 'light' or 'dark'
-     * @return string|self
+     * @return string|$this
      */
     public function __invoke(?ElementInterface $element = null, $withApiJs = true, $theme = null)
     {
@@ -56,10 +58,10 @@ class FormNewReCaptcha extends AbstractHelper
     }
 
     /**
-     * @param  NewReCaptcha|ElementInterface $newReCaptcha
+     * @param  NewReCaptcha $newReCaptcha
      * @return string
      */
-    public function render(NewReCaptcha $newReCaptcha)
+    public function render(ElementInterface $newReCaptcha)
     {
         /** @var FormHidden $url */
         $formHidden = $this->view->plugin('formHidden');
@@ -78,7 +80,7 @@ class FormNewReCaptcha extends AbstractHelper
     }
 
     /**
-     * @return self
+     * @return $this
      */
     public function appendApiJs()
     {
@@ -100,11 +102,11 @@ class FormNewReCaptcha extends AbstractHelper
      * The color theme of the widget
      *
      * @param  string $theme
-     * @return self
+     * @return $this
      */
     public function setTheme($theme = null)
     {
-        if (!\in_array($theme, ['light', 'dark'])) {
+        if (!in_array($theme, ['light', 'dark'])) {
             $theme = null;
         }
         $this->theme = $theme;

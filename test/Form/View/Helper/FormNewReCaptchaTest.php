@@ -20,7 +20,7 @@ class FormNewReCaptchaTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
-    public function testCreateService()
+    public function testCreateService(): void
     {
         $container = $this->getApplicationServiceLocator();
 
@@ -29,7 +29,7 @@ class FormNewReCaptchaTest extends AbstractHttpControllerTestCase
         $this->assertInstanceOf(FormNewReCaptcha::class, $helper);
     }
 
-    public function testAppendApiJs()
+    public function testAppendApiJs(): void
     {
         $container = $this->getApplicationServiceLocator();
 
@@ -38,7 +38,7 @@ class FormNewReCaptchaTest extends AbstractHttpControllerTestCase
         $helper->appendApiJs();
     }
 
-    public function testGetSetTheme()
+    public function testGetSetTheme(): void
     {
         $container = $this->getApplicationServiceLocator();
 

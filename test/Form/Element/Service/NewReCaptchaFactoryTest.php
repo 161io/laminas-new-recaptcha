@@ -22,7 +22,7 @@ class NewReCaptchaFactoryTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
-    public function testCreateService()
+    public function testCreateService(): void
     {
         $container = $this->getApplicationServiceLocator();
 
@@ -33,7 +33,7 @@ class NewReCaptchaFactoryTest extends AbstractHttpControllerTestCase
         $this->assertInstanceOf(Request::class, $element->getRequest());
     }
 
-    public function testCreateServiceByAlias()
+    public function testCreateServiceByAlias(): void
     {
         $container = $this->getApplicationServiceLocator();
 
