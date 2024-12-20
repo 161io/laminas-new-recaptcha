@@ -21,7 +21,7 @@ class FormNewReCaptcha extends AbstractHelper
     /**
      * @const string
      */
-    const URL_API_JS = 'https://www.google.com/recaptcha/api.js';
+    public const URL_API_JS = 'https://www.google.com/recaptcha/api.js';
 
     /**
      * The color theme of the widget
