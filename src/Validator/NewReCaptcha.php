@@ -18,22 +18,22 @@ class NewReCaptcha extends AbstractValidator
     /**
      * @const string
      */
-    const URL_VERIFY = 'https://www.google.com/recaptcha/api/siteverify';
+    public const URL_VERIFY = 'https://www.google.com/recaptcha/api/siteverify';
 
     /**
      * Input name
      *
      * @const string
      */
-    const NAME = 'g-recaptcha-response';
+    public const NAME = 'g-recaptcha-response';
 
     /**#@+
      * Error codes
      *
      * @const const
      */
-    const MISSING_VALUE = 'missingValue';
-    const BAD_CAPTCHA   = 'badCaptcha';
+    public const MISSING_VALUE = 'missingValue';
+    public const BAD_CAPTCHA   = 'badCaptcha';
     /**#@-*/
 
     /**
